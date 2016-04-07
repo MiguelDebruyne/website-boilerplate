@@ -1,0 +1,80 @@
+//************************************************************************************
+// MODULES & MIXINS
+//************************************************************************************
+
+
+// Use REM in modern browsers and fallback to pixels for IE8-
+// -----------------------------------------------------------------------------------
+@mixin font-size ($sizeValue: 1.6) {
+  font-size: ($sizeValue * 1) + px;
+  font-size: ($sizeValue / 10 * 0.625) + rem;
+}
+
+@mixin line-height ($sizeValue: 1.6) {
+  line-height: ($sizeValue * 1) + px;
+  line-height: ($sizeValue / 10 * 0.625) + rem;
+}
+
+
+// Opacity fix for IE8-
+// -----------------------------------------------------------------------------------
+@mixin opacity ($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie);
+}
+
+
+// Better readability for light text on a dark background
+// -----------------------------------------------------------------------------------
+@mixin font-smoothing ($enable: true) {
+  @if $enable {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+
+// Using the Clip Method, hide visually but NOT from screenreaders.
+// This is a best practice for accessibility
+// -----------------------------------------------------------------------------------
+@mixin visuallyHidden ($focusable: false) {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  position: absolute;
+
+  // Allows the element to be focusable when navigated to via the keyboard
+  @if $focusable {
+    &:active,
+    &:focus {
+      width: auto;
+      height: auto;
+      margin: 0;
+      clip: auto;
+      overflow: visible;
+      position: static;
+    }
+  }
+}
+
+
+// Converting px to em and vica versa
+// -----------------------------------------------------------------------------------
+@function pxtoem ($px) {
+  $em: ($px / 10 * 0.625) + em;
+  @return $em;
+}
+
+@function pxtorem ($px) {
+  $rem: ($px / 10 * 0.625) + rem;
+  @return $rem;
+}

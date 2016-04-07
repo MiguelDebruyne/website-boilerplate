@@ -1,0 +1,26 @@
+//************************************************************************************
+// STRUCTURE
+// General elements of the structure, including containers and wrappers
+//************************************************************************************
+
+
+%wrapper, .wrapper {
+  @extend %h-padding;
+
+  max-width: $site-width + px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+%h-padding, .h-padding {
+  @include media("<=site") {
+    padding-left: pxtorem(30);
+    padding-right: pxtorem(30);
+  }
+
+  @include media("<=tablet") {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}

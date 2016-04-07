@@ -1,0 +1,28 @@
+//************************************************************************************
+// BASE
+//************************************************************************************
+
+
+html {
+  font-family: $default-font;
+  font-size: 1em;
+  color: $text-color;
+}
+
+body {
+  @include font-size(14);
+  @include line-height(18);
+}
+
+::selection {
+  background: #1a1a1a; // Match this with the design
+  text-shadow: none;
+}
+
+p,
+article,
+dl,
+ul,
+ol {
+    margin-bottom: $paragraph-spacing;
+}
