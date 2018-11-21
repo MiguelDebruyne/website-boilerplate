@@ -15,6 +15,9 @@ trim_trailing_whitespace = true
 [*.scss]
 indent_size = 2
 
+[*.php]
+indent_style = tab
+
 [*.md]
 trim_trailing_whitespace = false
 

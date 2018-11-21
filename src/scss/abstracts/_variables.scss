@@ -1,0 +1,49 @@
+//************************************************************************************
+// GLOBAL VARIABLES
+// Regroup every variable definition in here.
+//************************************************************************************
+
+
+// Site & Sidebar width
+// -----------------------------------------------------------------------------------
+$site-width:    1000px;
+$sitebar-width: 450px;
+$base-padding: 2%;
+
+$xl: ">=#{pxtoem(1200)}";
+$lg: ">=#{pxtoem(992)}";
+$md: ">=#{pxtoem(768)}";
+$sm: ">=#{pxtoem(576)}";
+$xs: "<#{pxtoem(576)}";
+
+// Brand colors for the project
+// -----------------------------------------------------------------------------------
+$red: #e01e26;
+$blue: #004eff;
+
+$brand-primary: #5CA5B7;
+$brand-secondary: #3D5A6F;
+$brand-tertiary: #FFFBDB;
+
+// Font Families
+// -----------------------------------------------------------------------------------
+$default-font:  'Roboto', Helvetica, Arial, sans-serif;
+// $alt-font:      'regina_blacksolid', Tahoma, Arial, sans-serif;
+$base-size: 14;
+
+
+// Text colors
+// -----------------------------------------------------------------------------------
+$title-color:   $brand-primary;
+$text-color:    $brand-secondary;
+$text-dim:      #333333;
+$text-faint:    #6a6a6a;
+$text-weak:     #999999;
+
+
+// Paragraph and lists spacing
+// -----------------------------------------------------------------------------------
+$paragraph-spacing: 1.5em;
+$list-spacing:      1.1em;
+
+$default-transition: 0.3s ease-out;

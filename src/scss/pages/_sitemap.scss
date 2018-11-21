@@ -1,0 +1,33 @@
+.sitemap-wrap {
+  text-align: center;
+}
+
+#sitemap {
+  display: inline-block;
+  text-align: left;
+
+  li {
+    margin-bottom: 8px;
+
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background-color: $brand-primary;
+      position: relative;
+      top: -2px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    ul {
+      margin-left: 20px;
+      margin: 12px 0 12px 20px;
+    }
+  }
+
+  a {
+    color: $brand-secondary;
+  }
+}

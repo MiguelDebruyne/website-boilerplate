@@ -1,0 +1,97 @@
+//************************************************************************************
+// HELPERS
+//************************************************************************************
+
+
+// Image replacement technique
+// -----------------------------------------------------------------------------------
+.hide-text,
+%hide-text {
+  border: 0;
+  font: 0/0 a;
+  text-shadow: none;
+  color: transparent;
+}
+
+// Hide for both screenreaders and browsers:
+// -----------------------------------------------------------------------------------
+.hidden, .hide {
+  display: none !important;
+}
+
+.visible, .show {
+  display: block !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+
+// Using the Clip Method, hide visually but NOT from screenreaders.
+// This is a best practice for accessibility
+// -----------------------------------------------------------------------------------
+.visually-hidden,
+%visually-hidden {
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  position: absolute;
+}
+
+.visually-hidden.focusable,
+%visually-hidden-focusable {
+  @extend %visually-hidden;
+
+  &:active,
+  &:focus {
+    width: auto;
+    height: auto;
+    margin: 0;
+    clip: auto;
+    overflow: visible;
+    position: static;
+  }
+}
+
+
+// Containing floats for modern browsers
+// -----------------------------------------------------------------------------------
+.clearfix,
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Align the content of a container
+// this method can cause elements to be blurry due to the element being placed on a
+// “half pixel”. A solution for this is to set its parent element to preserve-3d
+// -----------------------------------------------------------------------------------
+.vertical-align,
+%vertical-align {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.horizontal-align,
+%horizontal-align {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.center-align,
+%center-align {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

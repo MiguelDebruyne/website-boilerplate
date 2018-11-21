@@ -1,0 +1,56 @@
+#cookiebar {
+  @include font-smoothing(true);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background-color: #FFF;
+  color: $darkBrown;
+  padding: 20px 0 30px;
+
+  #frmcookies {
+    width: 88%;
+    margin: auto;
+  }
+
+  .text {
+    line-height: 1.2;
+  }
+
+  .title {
+    @include font-size(30);
+    font-weight: 700;
+  }
+
+  p {
+    max-width: 700px;
+    margin: 1.2em 0;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  button:first-child {
+    margin-right: 20px;
+  }
+
+  @include media($md) {
+    padding-bottom: 0;
+
+    #frmcookies {
+      display: flex;
+      justify-content: center;
+    }
+
+    .text {
+      padding-right: 60px;
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

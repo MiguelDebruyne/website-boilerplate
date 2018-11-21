@@ -1,0 +1,26 @@
+.dynamic-page {
+  overflow: hidden;
+  color: #000;
+
+  .inner {
+    width: 88%;
+    max-width: $site-width;
+    margin: 0 auto;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #000;
+  }
+
+  a {
+    text-decoration: underline;
+
+    // &:hover {
+    //   color: $blue;
+    // }
+  }
+
+  @include media($md) {
+    padding: 40px 0;
+  }
+}

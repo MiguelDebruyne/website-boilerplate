@@ -1,0 +1,139 @@
+$border: 1px solid $blue;
+$paddingHor: 14px;
+$paddingVer: 0;
+$font-size: 18;
+$font-weight: 700;
+$border-radius: 0;
+
+%common-styles {
+  @include font-size($font-size);
+  font-family: $default-font;
+  font-weight: $font-weight;
+  width: 100%;
+  border: $border;
+  border-radius: $border-radius;
+  padding: $paddingVer $paddingHor;
+  height: 2.6rem;
+  color: $blue;
+  appearance: none;
+
+  .jquery & {
+    &.invalid {
+      box-shadow: 0 0 0 1px red;
+      outline: none;
+    }
+  }
+
+  .no-jquery & {
+    &:valid:focus {
+      box-shadow: 0 0 0 1px green;
+      outline: none;
+    }
+
+    &:invalid:focus {
+      box-shadow: 0 0 0 1px red;
+      outline: none;
+    }
+  }
+}
+
+label,
+.label {
+  @include font-size($font-size);
+  display: block;
+
+  // &.required:after {
+  //   content: '*';
+  // }
+}
+
+
+// Inputfields
+// -----------------------------------------------------------------------------
+input {
+  @extend %common-styles;
+}
+
+
+// Textarea
+// -----------------------------------------------------------------------------
+textarea {
+  @extend %common-styles;
+  height: 215px;
+  resize: vertical;
+  padding: 10px $paddingHor;
+  display: block;
+}
+
+
+// Checkbox
+// -----------------------------------------------------------------------------
+input[type='checkbox'] {
+  display: none;
+}
+
+input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 52px;
+  cursor: pointer;
+  user-select: none;
+}
+
+// Checkbox itself
+$cbsize: 20;
+$xSmaller: 6;
+$offsetTop: 6;
+
+input[type="checkbox"] + label:before {
+  content: '';
+  display: block;
+  width: $cbsize + px;
+  height: $cbsize + px;
+  border: $border;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  top: $offsetTop + px;
+}
+
+// Checkbox mark
+input[type="checkbox"] + label:after {
+
+  content: '';
+  display: block;
+  width: ($cbsize - $xSmaller) + px;
+  height: ($cbsize - $xSmaller) + px;
+  background-color: $blue;
+  position: absolute;
+  left: $xSmaller / 2 + px;
+  top: $xSmaller / 2 + $offsetTop + px;
+  opacity: 0;
+  transform: scale(0);
+  transition: all .2s;
+}
+
+input[type="checkbox"]:checked + label:after {
+  opacity: .9;
+  transform: scale(1);
+}
+
+input[type="checkbox"] + label > a {
+  color: $blue;
+  display: block;
+}
+
+
+// Select
+// -----------------------------------------------------------------------------
+select {
+  @extend %common-styles;
+  text-indent: ($paddingHor - 8px);
+}
+
+
+// Buttons
+// -----------------------------------------------------------------------------
+input[type="submit"] {
+  cursor: pointer;
+}

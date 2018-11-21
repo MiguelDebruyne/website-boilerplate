@@ -1,0 +1,29 @@
+//************************************************************************************
+// FUNCTIONS
+//************************************************************************************
+
+
+// Converting px to em and vica versa
+// -----------------------------------------------------------------------------------
+@function pxtoem ($px) {
+  $em: ($px / 10 * 0.625) + 0em;
+  @return $em;
+}
+
+@function pxtorem ($px) {
+  $rem: ($px / 10 * 0.625) + 0rem;
+  @return $rem;
+}
+
+
+// Remove the unit of a length
+// @param {Number} $number - Number to remove unit from
+// @return {Number} - Unitless number
+// -----------------------------------------------------------------------------------
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}

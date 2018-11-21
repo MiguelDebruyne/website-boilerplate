@@ -7,22 +7,53 @@ html {
   font-family: $default-font;
   font-size: 1em;
   color: $text-color;
+  box-sizing: border-box;
 }
 
 body {
-  @include font-size(14);
-  @include line-height(18);
+  @include font-size($base-size);
+  font-weight: 200;
+  line-height: 1.4;
+  position: relative;
+  background-color: #FFF;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 ::selection {
-  background: #1a1a1a; // Match this with the design
+  background: rgba($brand-primary, .6);
   text-shadow: none;
 }
 
 p,
-article,
 dl,
 ul,
 ol {
-    margin-bottom: $paragraph-spacing;
+  margin-bottom: $paragraph-spacing;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color $default-transition;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  border: none;
 }

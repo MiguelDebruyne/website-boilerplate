@@ -1,0 +1,35 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "mocha": true,
+        "amd": true,
+        "jquery": true
+    },
+    "extends": "eslint:recommended",
+    "globals": {
+        "AOS": true,
+        "Modernizr": true,
+        "Typekit": true,
+        "objectFitImages": true,
+        "grecaptcha": true
+    },
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": [
+            "error",
+            4
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-console": 0
+    }
+}
