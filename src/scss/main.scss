@@ -14,6 +14,7 @@
 @import
   "vendor/include-media",
   "vendor/normalize",
+  "vendor/bootstrap-grid",
   "vendor/hamburgers/hamburgers";
 
 
@@ -42,7 +43,9 @@
 // Components                                  Encapsulated re-usable components
 // -----------------------------------------------------------------------------
 @import
-  "components/components";
+  "components/components",
+  "components/alerts",
+  "components/cookies";
 
 
 // Pages                                                    Page specific styles

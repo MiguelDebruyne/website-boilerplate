@@ -11,9 +11,9 @@ html {
 }
 
 body {
-  @include font-size($base-size);
+  @include font-size($font-size);
   font-weight: 200;
-  line-height: 1.4;
+  line-height: $line-height;
   position: relative;
   background-color: #FFF;
 }
@@ -25,7 +25,7 @@ body {
 }
 
 ::selection {
-  background: rgba($brand-primary, .6);
+  background: rgba(color(brand-primary), .6);
   text-shadow: none;
 }
 
@@ -33,6 +33,7 @@ p,
 dl,
 ul,
 ol {
+  margin-top: 0;
   margin-bottom: $paragraph-spacing;
 }
 
@@ -46,8 +47,18 @@ ul {
 a {
   text-decoration: none;
   color: inherit;
-  transition: color $default-transition;
+  transition: color $transition;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
+
+a:focus,
+button:focus {
+  outline: none;
+}
+
 
 img {
   display: block;
@@ -56,4 +67,9 @@ img {
 
 button {
   border: none;
+  background: transparent;
+}
+
+address {
+  font-style: normal;
 }

@@ -1,20 +1,24 @@
-$border: 1px solid $blue;
+$background: transparent;
+$color: #000;
+$border: 1px solid color(brand-tertiary);
 $paddingHor: 14px;
 $paddingVer: 0;
-$font-size: 18;
+$input-font-size: $font-size;
+$input-text-color: $text-color;
 $font-weight: 700;
 $border-radius: 0;
 
 %common-styles {
-  @include font-size($font-size);
+  @include font-size($input-font-size);
   font-family: $default-font;
   font-weight: $font-weight;
   width: 100%;
+  background: $background;
   border: $border;
   border-radius: $border-radius;
   padding: $paddingVer $paddingHor;
   height: 2.6rem;
-  color: $blue;
+  color: $input-text-color;
   appearance: none;
 
   .jquery & {
@@ -63,6 +67,7 @@ textarea {
   resize: vertical;
   padding: 10px $paddingHor;
   display: block;
+  max-height: 50vh;
 }
 
 
@@ -80,7 +85,7 @@ input[type="checkbox"] + label {
   user-select: none;
 }
 
-// Checkbox itself
+// Checkbox border
 $cbsize: 20;
 $xSmaller: 6;
 $offsetTop: 6;
@@ -99,12 +104,11 @@ input[type="checkbox"] + label:before {
 
 // Checkbox mark
 input[type="checkbox"] + label:after {
-
   content: '';
   display: block;
   width: ($cbsize - $xSmaller) + px;
   height: ($cbsize - $xSmaller) + px;
-  background-color: $blue;
+  background-color: color(brand-tertiary);
   position: absolute;
   left: $xSmaller / 2 + px;
   top: $xSmaller / 2 + $offsetTop + px;
@@ -119,7 +123,7 @@ input[type="checkbox"]:checked + label:after {
 }
 
 input[type="checkbox"] + label > a {
-  color: $blue;
+  color: color(brand-tertiary);
   display: block;
 }
 

@@ -1,13 +1,15 @@
 {
   "devDependencies": {
-    "@babel/core": "^7.1.5",
-    "@babel/preset-env": "^7.1.5",
-    "ansi-colors": "^3.1.0",
-    "browser-sync": "^2.24.7",
-    "del": "^3.0.0",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "ansi-colors": "^3.2.4",
+    "autoprefixer": "^9.4.10",
+    "browser-sync": "^2.26.3",
+    "del": "^4.0.0",
+    "eslint-plugin-compat": "^2.7.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
-    "gulp-clean-css": "^3.10.0",
+    "gulp-clean-css": "^4.0.0",
     "gulp-connect-php": "1.0.3",
     "gulp-eslint": "^5.0.0",
     "gulp-hash": "^4.2.2",
@@ -15,25 +17,30 @@
     "gulp-imagemin": "^5.0.3",
     "gulp-load-plugins": "^1.5.0",
     "gulp-notify": "^3.2.0",
-    "gulp-plumber": "^1.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
-    "gulp-sass": "^4.0.1",
-    "gulp-sourcemaps": "^2.6.4",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
     "gulp-string-replace": "^1.1.2",
-    "gulp-uglify": "^3.0.1",
+    "gulp-uglify": "^3.0.2",
     "minimist": "^1.2.0",
     "pump": "^3.0.0",
-    "rollup-plugin-babel": "^4.0.3",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-uglify": "^6.0.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^8.4.1",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-uglify": "^6.0.2",
     "rollup-stream": "^1.24.1",
     "run-sequence": "^2.2.1",
+    "stylelint": "^9.10.1",
+    "stylelint-no-unsupported-browser-features": "^3.0.2",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "body-scroll-lock": "^2.6.1",
+    "featherlight": "^1.7.13",
     "jquery": "3.3.1",
     "slick-carousel": "^1.8.1"
   },
@@ -44,5 +51,10 @@
       "dist": "dist/",
       "test": "test/"
     }
-  }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "ie >= 11",
+    "> 1%"
+  ]
 }

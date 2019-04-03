@@ -3,7 +3,7 @@
 
     function setLazy () {
         lazy = document.getElementsByClassName('lazy');
-        console.log('Found ' + lazy.length + ' lazy images');
+        // console.log('Found ' + lazy.length + ' lazy images');
     }
 
     function cleanLazy () {

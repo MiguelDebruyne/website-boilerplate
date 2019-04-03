@@ -1,10 +1,6 @@
 archive/
 node_modules/
-_images/
-_library/
 .phpintel/
 
-_config/browsersync_ip.php
 .DS_Store
-DB_STRUCTURE.docx
 package-lock.json

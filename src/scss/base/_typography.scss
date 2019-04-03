@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------------
 h1, h2, h3, h4, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h4, .h5, .h6 {
-  font-family: $alt-font;
+  font-family: $default-font;
   font-weight: 300;
 }
 
@@ -64,7 +64,7 @@ h3, .h3 {
 
 // Utilities
 // -----------------------------------------------------------------------------------
-.txt-list {
+.text-list {
   padding-left: 20px;
 
   li:before {
@@ -81,15 +81,15 @@ h3, .h3 {
 }
 
 // Text aligning
-.txt-align-left {
+.text-align-left {
   text-align: left;
 }
 
-.txt-align-right {
+.text-align-right {
   text-align: right;
 }
 
-.txt-align-center {
+.text-align-center {
   text-align: center;
 }
 
@@ -97,7 +97,7 @@ h3, .h3 {
 .thin        { font-weight: 100; }
 .extra-light { font-weight: 200; } // Ultra Light
 .light       { font-weight: 300; } // Book
-.normal      { font-weight: 400; }
+.regular      { font-weight: 400; }
 .medium      { font-weight: 500; }
 .semi-bold   { font-weight: 600; } // Demi bold
 .bold        { font-weight: 700; }

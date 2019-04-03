@@ -16,14 +16,44 @@
 }
 
 
+// Convert Photoshop letter spacing to em
+// -----------------------------------------------------------------------------------
+@function line-height ($font-size, $line-height) {
+  @return ($line-height / $font-size);
+}
+
+
+// Converting Photoshop letter spacing to em
+// -----------------------------------------------------------------------------------
+@function letter-spacing ($ps-value) {
+  @return ($ps-value / 1000) * 1em;
+}
+
+
 // Remove the unit of a length
 // @param {Number} $number - Number to remove unit from
 // @return {Number} - Unitless number
 // -----------------------------------------------------------------------------------
-@function strip-unit($number) {
+@function strip-unit ($number) {
   @if type-of($number) == 'number' and not unitless($number) {
     @return $number / ($number * 0 + 1);
   }
 
   @return $number;
+}
+
+
+// Remove the unit of a length
+// @param {key} key name from $colors map in variables.scss
+// -----------------------------------------------------------------------------------
+@function map-get-strict($map, $key) {
+    @if map-has-key($map, $key) {
+        @return map-get($map, $key);
+    } @else {
+        @error "ERROR: Specified index does not exist in the mapping";
+    }
+}
+
+@function color ($key) {
+  @return map-get($colors, $key);
 }

@@ -5,20 +5,11 @@
 
 
 %wrapper, .wrapper {
-  // @extend %h-padding;
-
   max-width: $site-width;
   margin-left: auto;
   margin-right: auto;
   position: relative;
 }
-
-// %h-padding, .h-padding {
-  // @include media("<=site") {
-  //   padding-left: pxtorem(30);
-  //   padding-right: pxtorem(30);
-  // }
-// }
 
 .site-main {
 }

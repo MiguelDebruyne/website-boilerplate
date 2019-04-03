@@ -30,11 +30,11 @@ $('form[data-recaptcha]').submit(function(e) {
 // Input fields error handling
 // -----------------------------------------------
 
-$('form input:required, form textarea:required').on('invalid', function  (e) {
+$('form input:required, form textarea:required, form select:required').on('invalid', function  (e) {
     $(this).addClass('invalid');
 });
 
-$('form input, form textarea').on('input', function  (e) {
+$('form input, form textarea, form select').on('input', function  (e) {
     if ($(this).is(':valid')) {
         $(this).removeClass('invalid');
     }

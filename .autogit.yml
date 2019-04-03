@@ -14,7 +14,7 @@
 
 # Example shared files and folders:
 # shared_files: [ etc/config.yml ]
-shared_folders: [www/_images, www/_library]
+shared_folders: [ www/_images, www/_library, www/_logs/bots.log, www/_logs/bots_tofast.log ]
 
 # Hooks should be Bash shell scripts and get executed at different stages during deploy
 # Arguments: $1 = branch, $2 = commit id, $3 = checkout folder

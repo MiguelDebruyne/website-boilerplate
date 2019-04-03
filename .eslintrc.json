@@ -12,7 +12,8 @@
         "Modernizr": true,
         "Typekit": true,
         "objectFitImages": true,
-        "grecaptcha": true
+        "grecaptcha": true,
+        "google": true
     },
     "parserOptions": {
         "sourceType": "module"
@@ -30,6 +31,7 @@
             "error",
             "always"
         ],
-        "no-console": 0
+        "no-console": 0,
+        "no-unused-vars": "off"
     }
 }

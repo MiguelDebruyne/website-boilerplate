@@ -108,7 +108,7 @@
 // or object-fit and object-position:
 // @include object-fit(cover, top);
 // -----------------------------------------------------------------------------------
-@mixin object-fit($fit: fill, $position: null){
+@mixin object-fit ($fit: fill, $position: null){
   position: absolute;
   top: 0;
   left: 0;
@@ -123,5 +123,38 @@
     font-family: 'object-fit: #{$fit}; object-position: #{$position}';
   } @else {
     font-family: 'object-fit: #{$fit}';
+  }
+}
+
+
+// Break out of bootstrap grid
+// https://medium.com/@simonlidesign/an-elegant-way-to-break-the-bootstrap-container-2912628e4829
+// -----------------------------------------------------------------------------------
+@mixin break-out {
+  width: 100vw;
+  position: relative;
+  left: calc(-1 * (100vw - 100%) / 2);
+}
+
+@mixin remove-break-out {
+  width: 100%;
+  left: 0;
+}
+
+
+// Change color of menu btn on menu open
+// -----------------------------------------------------------------------------------
+@mixin change-menu-btn-color ($color) {
+  .hamburger-inner {
+    transition: background-color $transition;
+  }
+
+  &.is-active {
+    .hamburger-inner {
+      &:before,
+      &:after {
+        background-color: $color;
+      }
+    }
   }
 }

@@ -1,7 +1,10 @@
 var gulp = require('gulp');
 
 var p = require('gulp-load-plugins')({
-    pattern: ['*']
+    pattern: ['*'],
+    rename: {
+        'gulp-autoprefixer': 'gulp-autoprefixer'
+    }
 });
 
 // Temporary solution until gulp 4
@@ -9,6 +12,7 @@ var p = require('gulp-load-plugins')({
 
 var pkg = require('./package.json');
 var dirs = pkg.configs.directories;
+var browserslist = pkg.browserslist;
 
 var args = p.minimist(process.argv.slice(2)); // eslint-disable-line
 
@@ -22,14 +26,8 @@ var jsFiles = [
     'gulpfile.js',
     dirs.src + '_scripts/**/*.js',
     '!' + dirs.src + '_scripts/bundle.js',
-    '!' + dirs.src + '_scripts/bundle.min.js',
+    '!' + dirs.src + '_scripts/dist/bundle.min.*.js',
     '!' + dirs.src + '_scripts/vendor/**/*.js'
-];
-
-var browserList = [
-    'last 2 versions',
-    'ie >= 9',
-    '> 1%'
 ];
 
 const babelConfig = {
@@ -67,7 +65,7 @@ gulp.task('colors', function () {
 
 var reportError = function (error) {
     // [log]
-    console.log(error);
+    // console.log(error);
 
     // Format and ouput the whole error object
     // console.log(error.toString());
@@ -80,6 +78,7 @@ var reportError = function (error) {
     var cyan = p.ansiColors.cyan;
     var red = p.ansiColors.red;
     var yellow = p.ansiColors.yellow;
+    var green = p.ansiColors.green;
     var underline = p.ansiColors.underline;
 
     if (error.plugin) {
@@ -92,9 +91,21 @@ var reportError = function (error) {
         report += underline(yellow(error.relativePath || error.fileName)) + '\n';
     }
 
+    // if (error.line + error.column) {
+    //     report += red('Line:   ');
+    //     report += green(error.line + ' | ' + error.column)  + '\n';
+    // }
+
     if (error.formatted || error.message) {
+        var message = red('If you can read this something went wrong');
+
+        if (error.formatted != undefined) {
+            message = error.formatted;
+        } else if (error.message != undefined) {
+            message = error.message;
+        }
         // report += red('Error:\040') + ' ' + error.formatted + '\n';
-        report += error.formatted || error.message + '\n';
+        report += '\n' + message + '\n';
     }
 
     if (report === '\n') {
@@ -129,15 +140,33 @@ var reportError = function (error) {
 };
 
 
-gulp.task('process:scss', function () {
+/*gulp.task('process:scss', function () {
     return gulp.src(dirs.src + '_scss/main.scss')
         .pipe(p.plumber({ errorHandler: reportError }))
         .pipe(p.sourcemaps.init())
-        .pipe(p.sass({ outputStyle: 'compressed' })/*.on('error', p.sass.logError)*/)
-        .pipe(p.autoprefixer({ browsers: browserList }))
+        .pipe(p.sass({ outputStyle: 'compressed' })
+        // .on('error', p.sass.logError))
+        .pipe(p.autoprefixer({ browsers: browserslist }))
         .pipe(p.sourcemaps.write())
         .pipe(p.notify({ title: 'CSS Bundled' }))
         .pipe(gulp.dest(dirs.src + '_css'))
+        .pipe(p.browserSync.stream());
+});*/
+
+gulp.task('process:scss', function () {
+    var plugins = [
+        p.autoprefixer({browsers: browserslist, cascade: false})
+    ];
+
+    return gulp.src(dirs.src + '_scss/main.scss')
+        .pipe(p.plumber({ errorHandler: reportError }))
+        .pipe(p.sourcemaps.init())
+        .pipe(p.sass())
+        // .on('error', p.sass.logError)
+        .pipe(p.postcss(plugins))
+        .pipe(p.sourcemaps.write('.'))
+        .pipe(p.notify({ title: 'CSS Bundled' }))
+        .pipe(gulp.dest(dirs.src + '_css/'))
         .pipe(p.browserSync.stream());
 });
 
@@ -203,7 +232,8 @@ gulp.task('watch', function () {
     // With php
     p.connectPhp.server({
         base: dirs.src,
-        port: 8010
+        port: 8010,
+        stdio: 'ignore'
     }, function () {
         p.browserSync.init({
             proxy: '127.0.0.1:8010',
@@ -214,19 +244,33 @@ gulp.task('watch', function () {
         });
     });
 
-    gulp.watch(dirs.src + '_scss/**/*.scss', ['process:scss']);
+    function watchErrorHandler (error) {
+        // silently catch 'ENOENT' error typically caused by renaming watched folders
+        if (error.code === 'ENOENT') {
+            return;
+        }
+    }
+
+    gulp.watch(dirs.src + '_scss/**/*.scss', ['process:scss'])
+        .on('error', watchErrorHandler);
 
     gulp.watch([
         dirs.src + '**/*.php',
         '!' + dirs.src + '_error/debug.php'
-    ]).on('change', p.browserSync.reload);
+    ])
+        .on('change', p.browserSync.reload)
+        .on('error', watchErrorHandler);
 
-    gulp.watch(dirs.src + '_grafix/**/*').on('change', p.browserSync.reload);
+    gulp.watch(dirs.src + '_grafix/**/*')
+        .on('change', p.browserSync.reload)
+        .on('error', watchErrorHandler);
 
     gulp.watch(jsFiles).on('change', function () {
         p.runSequence('lint:js', 'process:js', p.browserSync.reload);
-    });
+    })
+        .on('error', watchErrorHandler);
 });
+
 
 
 
@@ -251,11 +295,14 @@ gulp.task('clean:css', function (done) {
 gulp.task('minify:css', function () {
     randomNumberCss = createRandomNumber(10000, 99999);
 
+    var plugins = [
+        p.autoprefixer({browsers: browserslist, cascade: false})
+    ];
+
     return gulp.src(dirs.src + '_scss/main.scss')
         .pipe(p.plumber({ errorHandler: reportError }))
         .pipe(p.sass({ outputStyle: 'compressed' }))
-        .pipe(p.stringReplace('../_grafix', '../../_grafix'))
-        .pipe(p.autoprefixer({ browsers: browserList }))
+        .pipe(p.postcss(plugins))
         .pipe(p.cleanCss({ level:{ 1: { specialComments: 0 }}}))
         .pipe(p.rename('main.min.'+ randomNumberCss +'.css'))
         .pipe(p.notify({ title: 'CSS Bundled' }))

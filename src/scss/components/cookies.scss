@@ -1,26 +1,27 @@
 #cookiebar {
-  @include font-smoothing(true);
+  @include font-size(14);
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 9999;
   background-color: #FFF;
-  color: $darkBrown;
+  color: color('grey');
   padding: 20px 0 30px;
+  transition: transform $transition;
 
   #frmcookies {
     width: 88%;
     margin: auto;
   }
 
-  .text {
-    line-height: 1.2;
+  .title {
+    @include font-size(20);
+    font-weight: 700;
   }
 
-  .title {
-    @include font-size(30);
-    font-weight: 700;
+  .text {
+    line-height: 1.2;
   }
 
   p {
@@ -32,9 +33,14 @@
     text-decoration: underline;
   }
 
+  button {
+    padding: 6px 4px;
+  }
+
   button:first-child {
     margin-right: 20px;
   }
+
 
   @include media($md) {
     padding-bottom: 0;
@@ -42,6 +48,10 @@
     #frmcookies {
       display: flex;
       justify-content: center;
+    }
+
+    .title {
+      @include font-size(24);
     }
 
     .text {

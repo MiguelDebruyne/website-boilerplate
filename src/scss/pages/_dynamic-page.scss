@@ -12,12 +12,8 @@
     color: #000;
   }
 
-  a {
+  a:not(.cta) {
     text-decoration: underline;
-
-    // &:hover {
-    //   color: $blue;
-    // }
   }
 
   @include media($md) {

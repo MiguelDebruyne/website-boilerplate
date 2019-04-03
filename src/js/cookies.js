@@ -1,4 +1,15 @@
-$('#frmcookies button').click(function(e) {
+var $cookiebar = $('#cookiebar');
+
+$cookiebar.hide = function () {
+    $cookiebar.css('transform', 'translateY(100%)');
+};
+
+$cookiebar.delete = function () {
+    $cookiebar.remove();
+    $(document).off('click', '#frmcookies button');
+};
+
+$('body').on('click', '#frmcookies button', function (e) {
     $.ajax({
         type: 'POST',
         url: this.form.action,
@@ -7,16 +18,15 @@ $('#frmcookies button').click(function(e) {
         },
         dataType: 'text',
 
-        success: function(data) {
-            var cookiebar = $('#cookiebar');
-            var height = cookiebar.height();
+        error: function () {
+            $cookiebar.delete();
+        },
 
-            cookiebar.css({
-                bottom: '-' + height + 'px'
-            });
+        success: function(data) {
+            $cookiebar.hide();
 
             setTimeout(function () {
-                cookiebar.remove();
+                $cookiebar.delete();
             }, 1000);
         }
     });

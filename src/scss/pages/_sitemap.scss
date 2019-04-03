@@ -14,7 +14,7 @@
       display: inline-block;
       width: 4px;
       height: 4px;
-      background-color: $brand-primary;
+      background-color: color(brand-primary);
       position: relative;
       top: -2px;
       border-radius: 50%;
@@ -28,6 +28,6 @@
   }
 
   a {
-    color: $brand-secondary;
+    color: color(brand-secondary);
   }
 }
